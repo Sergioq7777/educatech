@@ -3,6 +3,7 @@ from subjects.views import *
 
 
 urlpatterns =[
-   path('', ProductListView.as_view(), name='index'),
+   path('search', ProductSearchListView.as_view(), name='search'),
+   path('<slug:slug>',ProductDetailView.as_view(), name='product'),
     ]
    

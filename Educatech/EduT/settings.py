@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'categories',
     'subjects',
     'users',
     'educatech',
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'EduT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rest2',
+        'NAME': 'educatech',
         'HOST': '127.0.0.1',
         'USER': 'postgres',
         'PASSWORD': 'root',
@@ -130,3 +131,6 @@ STATIC_URL = '/static/'
 STATIC_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

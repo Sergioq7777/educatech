@@ -3,15 +3,8 @@
 
 {% block content %}
     <div class="col">
-        <h1>{{ message }}</h1>
-        <ul class="list-group">
-            {% for product in products %}                
-            <li class="list-group-item">
-                {{ product.title }}
-                    <span class="text-success">${{ product.price }}</span>
-            </li>                
-            {% endfor %}
-        </ul>                   
-        <img src="{% static 'images/estudiantes.jpg' %}" alt="imagen de mochila">
+        <h4 class="text-center">{{ message }}</h4>
+        {% include 'subj/snippets/search.html' %}
+        {% include 'subj/snippets/list.html'%}         
     </div>
 {% endblock %}  
