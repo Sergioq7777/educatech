@@ -1,0 +1,74 @@
+[
+{
+    "model": "subjects.product",
+    "pk": 10,
+    "fields": {
+        "title": "Django",
+        "description": "con imagen",
+        "price": 20000,
+        "slug": "django",
+        "image": "products/1HVKOLLX7wprRbHTl2IPDcQ.png",
+        "created_at": "2020-06-09T21:12:21.932Z"
+    }
+},
+{
+    "model": "subjects.product",
+    "pk": 11,
+    "fields": {
+        "title": "Laravel",
+        "description": "Curso de laravel",
+        "price": 55,
+        "slug": "laravel",
+        "image": "products/laravel.jpeg",
+        "created_at": "2020-06-09T21:58:22.889Z"
+    }
+},
+{
+    "model": "subjects.product",
+    "pk": 12,
+    "fields": {
+        "title": "Go",
+        "description": "curso de go",
+        "price": 70,
+        "slug": "go",
+        "image": "products/go.jpg",
+        "created_at": "2020-06-09T22:01:56.674Z"
+    }
+},
+{
+    "model": "subjects.product",
+    "pk": 13,
+    "fields": {
+        "title": "Node js",
+        "description": "curso de node",
+        "price": 80,
+        "slug": "node-js",
+        "image": "products/nodejs.jpg",
+        "created_at": "2020-06-09T22:02:32.429Z"
+    }
+},
+{
+    "model": "subjects.product",
+    "pk": 14,
+    "fields": {
+        "title": "pyhton",
+        "description": "curso python",
+        "price": 70,
+        "slug": "pyhton",
+        "image": "products/1HVKOLLX7wprRbHTl2IPDcQ_GG1Y93a.png",
+        "created_at": "2020-06-09T22:03:15.721Z"
+    }
+},
+{
+    "model": "subjects.product",
+    "pk": 15,
+    "fields": {
+        "title": "Csharp",
+        "description": "curso de c sharp",
+        "price": 57,
+        "slug": "csharp",
+        "image": "products/C_sharp_CDMx.png",
+        "created_at": "2020-06-09T22:03:36.549Z"
+    }
+}
+]

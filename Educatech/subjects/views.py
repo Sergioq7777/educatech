@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+from django.db.models import Q
 
 from .models import *
 
@@ -18,13 +19,14 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'subjects.html'
+    template_name = 'subj/subjects.html'
 
 class ProductSearchListView(ListView):
     template_name = 'subj/search.html'
 
     def get_queryset(self):
-        return Product.objects.filter(title__icontains=self.query())
+        filters = Q(title__icontains=self.query()) | Q(category__title__icontains=self.query())
+        return Product.objects.filter(filters)
     
     def query(self):
         return self.request.GET.get('q')

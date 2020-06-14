@@ -1,21 +1,20 @@
-from __future__ import unicode_literals
 from django.db import models
 
-class Users(models.Model):
-    name = models.CharField(max_length=255)
-    lastname = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    age = models.IntegerField()
-
-    def __str__(self):
-        return self.title
+from django.contrib.auth.models import AbstractUser
 
 
-class Video(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.TextField()
-    slug = models.SlugField(max_length=50)
-    crated_at = models.DateTimeField(auto_now=True)
+class User(AbstractUser):
 
-    def __str__(self):
-        return self.title
+    def get_full_name(self):
+        return '{} {}'.format(self.first_name, self.last_name)
+
+class Customer(User):
+    class Meta:
+        proxy = True
+    
+    def get_products(self):
+        return []
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()

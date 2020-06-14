@@ -5,7 +5,7 @@
     <div class="card-body">
         <h5 class="card-title">{{ product.title}}</h5>
         <p class="card-text">{{ product.description }}</p>
-        <a href="#" class="btn btn-primary">Suscribe right away</a>
+        <a href="{% url 'subjects:product' product.slug %}" class="btn btn-primary">Suscribe right away</a>
     </div>
 
 </div>

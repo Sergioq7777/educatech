@@ -1,0 +1,2 @@
+download info: python3 manage.py dumpdata subjects.product --format=json --indent=4 > subjects/fixtures/products.json
+charge info: python3 manage.py loaddata products.json

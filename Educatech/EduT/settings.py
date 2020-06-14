@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '=fjlp(c(zfor4l%6v=^!ll0&0xbizreq*4a^-5w^%lbpg2@9zd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +58,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'EduT.urls'
+
+AUTH_USER_MODEL = 'users.User'
+
+ASGI_APPLICATION = "EduT.routing.application"
 
 TEMPLATES = [
     {
@@ -81,7 +88,7 @@ WSGI_APPLICATION = 'EduT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'educatech',
+        'NAME': 'eduedu',
         'HOST': '127.0.0.1',
         'USER': 'postgres',
         'PASSWORD': 'root',
@@ -134,3 +141,15 @@ STATIC_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# redis
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+            #"hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')] //heroku
+        },
+    },
+}
