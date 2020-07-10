@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load product_extras %}
 
 
 {% block content %}
@@ -10,10 +11,13 @@
 <div class="col">
     <div class="h1">{{ product.title }}
     <div class="h5 font-weight-bold">
-        Precio: <span class="text-danger">${{ product.price }}</span>
+        Precio: <span class="text-danger">{{ product.price | price_format }}</span>
     </div> 
     <div class="h6">
         <p>{{ product.description }}</p>
+    </div>
+    <div class="">
+        {% include 'snippets/add.html' %}
     </div>
     </div>
 </div>

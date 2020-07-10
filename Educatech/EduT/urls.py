@@ -4,7 +4,6 @@ from educatech.views import *
 from users.views import *
 from subjects.views import *
 from categories.views import *
-from chat.views import *
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -13,13 +12,15 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('messages/', include('chat.urls')),
-    path('admin/', admin.site.urls),
-    path('edu/', include('educatech.urls')),
+
     path('', ProductListView.as_view(), name='index'),
-    path('productos/', include('subjects.urls')),
+    path('edu/', include('educatech.urls')),
     path('categorias/', include('categories.urls')),
-    
+    path('admin/', admin.site.urls),
+    path('productos/', include('subjects.urls')),
+    path('carrito/', include('carts.urls')),
+    path('orden/', include('orders.urls')),
+    path('direcciones/', include('shipping_addresses.urls')),
     #path('users/', include('users.urls')),
 
 ]

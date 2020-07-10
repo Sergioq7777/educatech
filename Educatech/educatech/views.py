@@ -7,6 +7,8 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
+from django.http import HttpResponseRedirect
+
 #from django.contrib.auth.models import User
 from users.models import User
 
@@ -39,6 +41,10 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
+
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET['next'])
+
             return redirect('index')
         else:
             messages.error(request, "Usuario o contraseña no valida")

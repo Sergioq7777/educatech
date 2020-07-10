@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'categories',
     'subjects',
     'users',
+    'carts',
+    'shipping_addresses',
     'educatech',
+    'orders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,8 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'chat',
-    'channels',
+
 ]
 
 MIDDLEWARE = [
@@ -88,10 +90,10 @@ WSGI_APPLICATION = 'EduT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'eduedu',
+        'NAME': 'tiendavirtual',
         'HOST': '127.0.0.1',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': 'holberton',
         'PORT': '5432',
     }
 }
@@ -141,15 +143,3 @@ STATIC_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# redis
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-            #"hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')] //heroku
-        },
-    },
-}
