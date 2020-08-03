@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+from decouple import config
+# Usar variables de entorno con (pip install python-decouple)
+# Create folder .env and set the private information and don't forget ignore on github
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,10 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=fjlp(c(zfor4l%6v=^!ll0&0xbizreq*4a^-5w^%lbpg2@9zd'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,6 +43,9 @@ INSTALLED_APPS = [
     'shipping_addresses',
     'educatech',
     'orders',
+    'charges',
+    'promo_codes',
+    'billing_profiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -90,10 +97,10 @@ WSGI_APPLICATION = 'EduT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tiendavirtual',
-        'HOST': '127.0.0.1',
-        'USER': 'postgres',
-        'PASSWORD': 'holberton',
+        'NAME': config('DB_NAME'),
+        'HOST': config('DB_HOST'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
         'PORT': '5432',
     }
 }
@@ -132,14 +139,31 @@ USE_L10N = True
 USE_TZ = True
 
 
+#Email set
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_NAME')
+EMAIL_HOST_PASSWORD = config('PASSWORD_EMAIL')# Usar variables de entorno con (pip install python-decouple)
+EMAIL_USE_TLS = True 
+
+STRIPE_PUBLIC_KEY = 'pk_test_51H7UcVBZoUF5kDmFZZYsULMHCOWvaz5K1ErSPdAstJ826CdC1JbBpvDjU9LlOxikloBnJTYD7fqRvST9FyIjYUVT00m1dpvVTt'
+STRIPE_PRIVATE_KEY = 'sk_test_51H7UcVBZoUF5kDmFLtxTgzmEwMcFprrgbU63N7jOHaHF63EImlW9DBATm2BJoCFGYvCMuwNNJcC3voJH2rdSwfHW00USIn5JVi'
+#pip install stripe and https://stripe.com/docs/stripe-js
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 STATIC_URL = '/static/'
 
-STATIC_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+STATICFILES_DIRS = (
+     os.path.join(BASE_DIR, 'static'),
 )
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

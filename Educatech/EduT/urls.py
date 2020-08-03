@@ -21,7 +21,8 @@ urlpatterns = [
     path('carrito/', include('carts.urls')),
     path('orden/', include('orders.urls')),
     path('direcciones/', include('shipping_addresses.urls')),
-    #path('users/', include('users.urls')),
+    path('codigos/', include('promo_codes.urls')),
+    path('pagos/', include('billing_profiles.urls')),
 
 ]
 

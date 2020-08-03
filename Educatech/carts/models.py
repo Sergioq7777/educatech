@@ -1,3 +1,6 @@
+import uuid
+import decimal
+
 from django.db import models
 
 from users.models import User
@@ -6,8 +9,9 @@ from subjects.models import Product
 from django.db.models.signals import pre_save, post_save
 from django.db.models.signals import m2m_changed
 
-import uuid
-import decimal
+from orders.common import OrderStatus
+
+
 
 
 class Cart(models.Model):
@@ -45,9 +49,12 @@ class Cart(models.Model):
     def products_related(self):
         return self.cartproducts_set.select_related('product')
 
+    def has_products(self):
+        return self.products.exists()
+
     @property
     def order(self):
-        return self.order_set.first()
+        return self.order_set.filter(status=OrderStatus.CREATED).first()
 
 
 
@@ -59,7 +66,6 @@ class CartProductsManager(models.Manager):
         
         object.update_quantity(quantity) 
         return object
-
 
 class CartProducts(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
